@@ -40,7 +40,7 @@ const SignUpPage = () => {
   };
   return (
     <>
-      <h1 className="form-title">Sing Up and Personalize</h1>
+      <h1 className="form-title">Sign Up and Personalize</h1>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
         {/* Inputs */}
         <InputField
@@ -49,7 +49,7 @@ const SignUpPage = () => {
           placeholder="John Doe"
           register={register}
           error={errors.fullName}
-          validation={{ require: "Full name is required", minLength: 2 }}
+          validation={{ required: "Full name is required", minLength: 2 }}
         />
         <InputField
           name="email"
@@ -58,7 +58,7 @@ const SignUpPage = () => {
           register={register}
           error={errors.email}
           validation={{
-            require: "Email is required",
+            required: "Email is required",
             minLength: 2,
             pattern: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/,
             message: "Invalid Email",
@@ -71,7 +71,7 @@ const SignUpPage = () => {
           type="password"
           register={register}
           error={errors.password}
-          validation={{ require: "Password is required", minLength: 8 }}
+          validation={{ required: "Password is required", minLength: 8 }}
         />
         <CountrySelectField
           name="country"

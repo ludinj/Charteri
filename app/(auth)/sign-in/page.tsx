@@ -38,10 +38,16 @@ const SignInPage = () => {
           register={register}
           error={errors.email}
           validation={{
-            require: "Email is required",
-            minLength: 2,
-            pattern: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/,
             message: "Invalid Email",
+            required: "Email is required",
+            minLength: {
+              value: 6,
+              message: "Email must be at least 6 characters",
+            },
+            pattern: {
+              value: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/,
+              message: "Invalid email format",
+            },
           }}
         />
         <InputField
@@ -51,7 +57,13 @@ const SignInPage = () => {
           type="password"
           register={register}
           error={errors.password}
-          validation={{ require: "Password is required", minLength: 8 }}
+          validation={{
+            required: "Password is required",
+            minLength: {
+              value: 8,
+              message: "Password must be at least 8 characters",
+            },
+          }}
         />
 
         <Button
