@@ -3,10 +3,14 @@
 import FooterLink from "@/components/forms/FooterLink";
 import InputField from "@/components/forms/InputField";
 import { Button } from "@/components/ui/button";
+import { signInWithEmail } from "@/lib/actions/auth.actions";
+import { useRouter } from "next/navigation";
 import React from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 
 const SignInPage = () => {
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -20,11 +24,20 @@ const SignInPage = () => {
   });
   const onSubmit = async (data: SignInFormDataI) => {
     try {
-      console.log(data);
+      const result = await signInWithEmail(data);
+      if (result.success) {
+        toast.success("Welcome back!");
+        router.push("/");
+      }
     } catch (error) {
       console.log(error);
+      toast.error("Sign in fail", {
+        description:
+          error instanceof Error ? error.message : "Failed to Sign in",
+      });
     }
   };
+
   return (
     <>
       <h1 className="form-title">Welcome back</h1>
